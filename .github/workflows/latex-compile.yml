@@ -11,14 +11,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Compile LaTeX files
         uses: xu-cheng/latex-action@v3
@@ -37,17 +33,13 @@ jobs:
             sesion_10_beamer.tex
           args: "-pdf -interaction=nonstopmode"
 
-      - name: Move PDFs to docs folder
+      - name: Deploy PDFs to public repo
         run: |
-          mkdir -p docs
-          mv *.pdf docs/ 2>/dev/null || true
-          ls -la docs/
-
-      - name: Commit and push PDFs
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add docs/
+          git clone https://x-access-token:${{ secrets.PDF_DEPLOY_TOKEN }}@github.com/diegoacanales/MatematicasFinancieras-PDFs.git pdf-repo
+          cp *.pdf pdf-repo/
+          cd pdf-repo
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add *.pdf
           git diff --staged --quiet || git commit -m "Auto-compile: Update PDFs"
-          git pull --rebase origin main
-          git push origin main
+          git push
