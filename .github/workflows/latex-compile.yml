@@ -35,6 +35,7 @@ jobs:
             sesion_09_beamer.tex
             sesion_10_beamer.tex
           continue_on_error: true
+          args: "-pdf -interaction=nonstopmode"
 
       - name: Move PDFs to pdfs folder
         run: |
