@@ -20,11 +20,20 @@ jobs:
         with:
           fetch-depth: 0
         
-      - name: Compile LaTeX files
+- name: Compile LaTeX files
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: "*.tex"
-          glob_root_file: true
+          root_file: |
+            sesion_01_beamer.tex
+            sesion_02_beamer.tex
+            sesion_03_beamer.tex
+            sesion_04_beamer.tex
+            sesion_05_beamer.tex
+            sesion_06_beamer.tex
+            sesion_07_beamer.tex
+            sesion_08_beamer.tex
+            sesion_09_beamer.tex
+            sesion_10_beamer.tex
           
       - name: Move PDFs to pdfs folder
         run: |
