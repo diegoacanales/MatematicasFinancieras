@@ -11,42 +11,32 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
         
-      - name: Install LaTeX
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y texlive-full latexmk
+      - name: Compile LaTeX files
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: "*.tex"
+          glob_root_file: true
           
-      - name: Create pdfs directory
-        run: mkdir -p pdfs
-        
-      - name: Compile all .tex files
+      - name: Move PDFs to pdfs folder
         run: |
-          for texfile in *.tex; do
-            if [ -f "$texfile" ]; then
-              filename=$(basename "$texfile" .tex)
-              echo "Compiling: $texfile"
-              latexmk -pdf -interaction=nonstopmode -halt-on-error "$texfile" || true
-              if [ -f "$filename.pdf" ]; then
-                mv "$filename.pdf" pdfs/
-                echo "✓ Created: pdfs/$filename.pdf"
-              fi
-            fi
-          done
+          mkdir -p pdfs
+          mv *.pdf pdfs/ 2>/dev/null || true
+          ls -la pdfs/
           
-      - name: Commit PDFs
+      - name: Commit and push PDFs
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add pdfs/
           git diff --staged --quiet || git commit -m "Auto-compile: Update PDFs"
-          
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          git pull --rebase origin main
+          git push origin main
