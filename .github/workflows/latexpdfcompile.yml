@@ -1,0 +1,45 @@
+name: Compile LaTeX to PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**.tex'
+      - '.github/workflows/latex-compile.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        
+      - name: Compile LaTeX files
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: "*.tex"
+          glob_root_file: true
+          latexmk_use_xelatex: false
+          
+      - name: Move PDFs to pdfs folder
+        run: |
+          mkdir -p pdfs
+          mv *.pdf pdfs/ 2>/dev/null || true
+          ls -la pdfs/
+          
+      - name: Commit PDFs
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add pdfs/
+          git diff --staged --quiet || git commit -m "Auto-compile: Update PDFs"
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
