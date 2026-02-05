@@ -22,6 +22,7 @@ jobs:
 
       - name: Compile LaTeX files
         uses: xu-cheng/latex-action@v3
+        continue-on-error: true
         with:
           root_file: |
             sesion_01_beamer.tex
@@ -34,7 +35,6 @@ jobs:
             sesion_08_beamer.tex
             sesion_09_beamer.tex
             sesion_10_beamer.tex
-          continue_on_error: true
           args: "-pdf -interaction=nonstopmode"
 
       - name: Move PDFs to pdfs folder
