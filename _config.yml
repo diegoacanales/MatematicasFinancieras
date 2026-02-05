@@ -1,0 +1,31 @@
+title: Matemáticas Financieras
+description: EC3004B · Tecnológico de Monterrey, Campus Puebla
+author: Diego A. Canales
+email: diego.canales@tec.mx
+
+# GitHub Pages settings
+remote_theme: pages-themes/minimal@v0.2.0
+plugins:
+  - jekyll-remote-theme
+
+# Course info
+course_code: EC3004B
+semester: Primavera 2026
+campus: Tecnológico de Monterrey, Campus Puebla
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Exclude from build
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+
+# Collections for modules
+collections:
+  modules:
+    output: true
+    permalink: /modulos/:name/
