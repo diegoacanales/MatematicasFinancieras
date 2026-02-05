@@ -31,7 +31,7 @@
 \usepackage{multicol}
 
 \pgfplotsset{compat=1.17}
-
+\lstset{literate={ñ}{{\~n}}1 {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1}
 % CÓDIGO PYTHON
 \lstdefinestyle{pythonstyle}{
     language=Python,
@@ -728,7 +728,7 @@
                 \bottomrule
             \end{tabular}
             \end{center}
-        \end{column>
+        \end{column}
     \end{columns}
 \end{frame}
 
@@ -948,7 +948,7 @@ print(f"Ahorro mensual requerido: ${ahorro_mensual:,.2f}")
         \item \textbf{Banca:} Productos crediticios, tesorería
         \item \textbf{Finanzas Personales:} Planificación del retiro, decisiones de inversión
         \item \textbf{Economía:} Política monetaria, decisiones intertemporales
-    \end{itemize>
+    \end{itemize}
 
     \pause
     \vspace{0.5cm}
