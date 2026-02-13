@@ -115,7 +115,7 @@
         \item Distinguir entre tasa de descuento y tasa de interés
         \item Construir e interpretar diagramas de flujo de caja
         \item Diferenciar entre descuento simple y descuento compuesto
-        \item Calcular el valor presente de flujos futuros con HP 12C y Python
+        \item Calcular el valor presente de flujos futuros con HP 17bII+ y Python
     \end{enumerate}
 \end{frame}
 
@@ -671,22 +671,26 @@
 \end{frame}
 
 % ===========================================
-% SECCIÓN 7: HP 12C
+% SECCIÓN 7: HP 17bII+
 % ===========================================
-\section{Calculadora HP 12C}
+\section{Calculadora HP 17bII+}
 
-\begin{frame}{HP 12C: Recordatorio de Teclas}
+\begin{frame}{HP 17bII+: Recordatorio de Teclas}
+    \textbf{Ruta:} \texttt{FIN} $\to$ \texttt{TVM} (verificar \texttt{P/YR = 1})
+
+    \vspace{0.3cm}
+
     \begin{center}
     \begin{tabular}{@{}cl@{}}
         \toprule
-        \textbf{Tecla} & \textbf{Función} \\
+        \textbf{Tecla (soft key)} & \textbf{Función} \\
         \midrule
-        \texttt{n} & Número de períodos \\
-        \texttt{i} & Tasa de interés por período (\%) \\
+        \texttt{N} & Número de períodos \\
+        \texttt{I\%YR} & Tasa de interés anual nominal (\%) \\
         \texttt{PV} & Valor presente \\
         \texttt{FV} & Valor futuro \\
-        \texttt{CHS} & Cambiar signo \\
-        \texttt{f CLX} & Limpiar registros financieros \\
+        \texttt{+/-} & Cambiar signo \\
+        \texttt{CLEAR DATA} & Limpiar registros financieros \\
         \bottomrule
     \end{tabular}
     \end{center}
@@ -702,7 +706,7 @@
     \end{alertblock}
 \end{frame}
 
-\begin{frame}{HP 12C: Ejemplo 1 - Valor Presente Básico}
+\begin{frame}{HP 17bII+: Ejemplo 1 - Valor Presente Básico}
     \begin{block}{Problema}
         ¿Cuál es el valor presente de \$25,000 que recibirás en 6 años si la tasa es 9\% anual?
     \end{block}
@@ -715,10 +719,11 @@
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar registros \\
+        \texttt{FIN} $\to$ \texttt{TVM} & & Entrar al menú TVM \\
+        \texttt{CLEAR DATA} & 0.00 & Limpiar registros \\
         \texttt{25000 FV} & 25,000.00 & Valor futuro \\
-        \texttt{9 i} & 9.00 & Tasa 9\% \\
-        \texttt{6 n} & 6.00 & 6 períodos \\
+        \texttt{9 I\%YR} & 9.00 & Tasa 9\% anual \\
+        \texttt{6 N} & 6.00 & 6 períodos \\
         \texttt{PV} & \textbf{-14,906.57} & Valor presente \\
         \bottomrule
     \end{tabular}
@@ -730,7 +735,7 @@
     \textbf{Respuesta:} El VP es \$14,906.57 (el signo negativo indica lo que pagarías hoy).
 \end{frame}
 
-\begin{frame}{HP 12C: Ejemplo 2 - Comparar Opciones}
+\begin{frame}{HP 17bII+: Ejemplo 2 - Comparar Opciones}
     \begin{block}{Problema}
         Te ofrecen \$80,000 hoy o \$120,000 en 5 años. Si tu costo de oportunidad es 10\%, ¿cuál eliges?
     \end{block}
@@ -745,10 +750,10 @@
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar \\
+        \texttt{CLEAR DATA} & 0.00 & Limpiar \\
         \texttt{120000 FV} & 120,000.00 & Valor futuro \\
-        \texttt{10 i} & 10.00 & Tasa 10\% \\
-        \texttt{5 n} & 5.00 & 5 años \\
+        \texttt{10 I\%YR} & 10.00 & Tasa 10\% anual \\
+        \texttt{5 N} & 5.00 & 5 años \\
         \texttt{PV} & \textbf{-74,510.88} & VP de la opción futura \\
         \bottomrule
     \end{tabular}
@@ -760,7 +765,7 @@
     \textbf{Decisión:} \$80,000 hoy > \$74,510.88. \textbf{Elige los \$80,000 hoy.}
 \end{frame}
 
-\begin{frame}{HP 12C: Ejemplo 3 - Encontrar la Tasa Implícita}
+\begin{frame}{HP 17bII+: Ejemplo 3 - Encontrar la Tasa Implícita}
     \begin{block}{Problema}
         Un bono sin cupón paga \$1,000 al vencimiento en 3 años. Si hoy cuesta \$850, ¿cuál es la tasa de rendimiento anual?
     \end{block}
@@ -773,11 +778,11 @@
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar \\
-        \texttt{850 CHS PV} & -850.00 & Precio (lo que pagas) \\
+        \texttt{CLEAR DATA} & 0.00 & Limpiar \\
+        \texttt{850 +/- PV} & -850.00 & Precio (lo que pagas) \\
         \texttt{1000 FV} & 1,000.00 & Valor al vencimiento \\
-        \texttt{3 n} & 3.00 & 3 años \\
-        \texttt{i} & \textbf{5.57} & Tasa anual \\
+        \texttt{3 N} & 3.00 & 3 años \\
+        \texttt{I\%YR} & \textbf{5.57} & Tasa anual \\
         \bottomrule
     \end{tabular}
     \end{center}
@@ -1035,7 +1040,7 @@ plt.show()
 
 \begin{frame}{Tarea para la Próxima Sesión}
     \begin{enumerate}
-        \item \textbf{Ejercicios HP 12C:}
+        \item \textbf{Ejercicios HP 17bII+:}
         \begin{itemize}
             \item Calcular VP de \$100,000 en 12 años al 6\%
             \item Encontrar la tasa si $P = \$15,000$, $F = \$25,000$, $n = 5$

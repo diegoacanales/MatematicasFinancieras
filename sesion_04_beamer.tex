@@ -658,12 +658,12 @@
 \end{frame}
 
 % ===========================================
-% SECCIÓN 6: HP 12C
+% SECCIÓN 6: HP 17bII+
 % ===========================================
-\section{Calculadora HP 12C}
+\section{Calculadora HP 17bII+}
 
-\begin{frame}{HP 12C: Cálculo de Tasa Real}
-    No hay función directa para tasa real, pero podemos calcularla paso a paso.
+\begin{frame}{HP 17bII+: Cálculo de Tasa Real}
+    No hay función directa para tasa real, pero podemos calcularla con aritmética algebraica.
 
     \pause
     \vspace{0.3cm}
@@ -680,10 +680,9 @@
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{1.12 ENTER} & 1.12 & Factor nominal \\
-        \texttt{1.05 $\div$} & 1.0667 & Factor real \\
-        \texttt{1 -} & 0.0667 & Tasa real decimal \\
-        \texttt{100 $\times$} & \textbf{6.67} & Tasa real \% \\
+        \texttt{1.12 $\div$ 1.05 =} & 1.0667 & Factor real \\
+        \texttt{$-$ 1 =} & 0.0667 & Tasa real decimal \\
+        \texttt{$\times$ 100 =} & \textbf{6.67} & Tasa real \% \\
         \bottomrule
     \end{tabular}
     \end{center}
@@ -694,7 +693,7 @@
     \textbf{Tasa real = 6.67\%}
 \end{frame}
 
-\begin{frame}{HP 12C: Valor Presente con Inflación}
+\begin{frame}{HP 17bII+: Valor Presente con Inflación}
     \begin{block}{Problema}
         Recibirás \$50,000 nominales en 5 años. La tasa nominal es 10\% y la inflación 4\%. ¿Cuál es el VP?
     \end{block}
@@ -702,23 +701,23 @@
     \pause
     \vspace{0.3cm}
 
-    \textbf{Opción 1: Usar tasa nominal directamente}
+    \textbf{Opción 1: Usar tasa nominal directamente} (\texttt{FIN} $\to$ \texttt{TVM})
     \begin{center}
     \begin{tabular}{@{}lll@{}}
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar \\
+        \texttt{CLEAR DATA} & 0.00 & Limpiar \\
         \texttt{50000 FV} & 50,000.00 & Valor futuro nominal \\
-        \texttt{10 i} & 10.00 & Tasa nominal \\
-        \texttt{5 n} & 5.00 & Períodos \\
+        \texttt{10 I\%YR} & 10.00 & Tasa nominal \\
+        \texttt{5 N} & 5.00 & Períodos \\
         \texttt{PV} & \textbf{-31,046.07} & Valor presente \\
         \bottomrule
     \end{tabular}
     \end{center}
 \end{frame}
 
-\begin{frame}{HP 12C: Poder Adquisitivo del VP}
+\begin{frame}{HP 17bII+: Poder Adquisitivo del VP}
     \textbf{Continuando el ejemplo anterior...}
 
     El VP de \$31,046 está en pesos de hoy. ¿Cuál es su poder adquisitivo en 5 años?
@@ -726,15 +725,15 @@
     \pause
     \vspace{0.3cm}
 
-    \textbf{Ajuste por inflación futura:}
+    \textbf{Ajuste por inflación futura:} (\texttt{FIN} $\to$ \texttt{TVM})
     \begin{center}
     \begin{tabular}{@{}lll@{}}
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
         \texttt{31046.07 PV} & 31,046.07 & VP calculado \\
-        \texttt{4 i} & 4.00 & Tasa de inflación \\
-        \texttt{5 n} & 5.00 & Períodos \\
+        \texttt{4 I\%YR} & 4.00 & Tasa de inflación \\
+        \texttt{5 N} & 5.00 & Períodos \\
         \texttt{FV} & \textbf{37,773.24} & Equivalente nominal en año 5 \\
         \bottomrule
     \end{tabular}
@@ -1016,7 +1015,7 @@ plt.savefig('nominal_vs_real.png')
 
 \begin{frame}{Tarea para la Próxima Sesión}
     \begin{enumerate}
-        \item \textbf{Ejercicios HP 12C:}
+        \item \textbf{Ejercicios HP 17bII+:}
         \begin{itemize}
             \item Calcular tasa real si $r_{nom} = 15\%$ y $\pi = 9\%$
             \item VP de \$200,000 nominales en 10 años, $r_{nom} = 8\%$, $\pi = 3\%$

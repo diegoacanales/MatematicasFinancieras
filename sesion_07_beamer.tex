@@ -117,7 +117,7 @@
         \item Separar cada pago en componente de interés y capital
         \item Comparar los tres sistemas de amortización principales
         \item Analizar el impacto de pagos anticipados
-        \item Usar la HP 12C para cálculos de amortización
+        \item Usar la HP 17bII+ para cálculos de amortización
     \end{enumerate}
 \end{frame}
 
@@ -519,7 +519,7 @@
 \end{frame}
 
 % ===========================================
-% SECCIÓN 7: TRUCOS Y HP 12C
+% SECCIÓN 7: TRUCOS Y HP 17bII+
 % ===========================================
 \section{Trucos de Estimación Mental}
 
@@ -575,17 +575,23 @@
     $A_1 = 3,086 - 3,000 = \$86$ (solo 2.8\% de la cuota va a capital)
 \end{frame}
 
-\section{Calculadora HP 12C}
+\section{Calculadora HP 17bII+}
 
-\begin{frame}{HP 12C: Funciones de Amortización}
+\begin{frame}{HP 17bII+: Funciones de Amortización}
+    \textbf{Ruta:} \texttt{FIN} $\to$ \texttt{TVM} $\to$ (calcular PMT) $\to$ \texttt{OTHER} $\to$ \texttt{AMRT}
+
+    \vspace{0.3cm}
+
     \begin{center}
     \begin{tabular}{@{}cl@{}}
         \toprule
-        \textbf{Teclas} & \textbf{Función} \\
+        \textbf{Tecla (soft key)} & \textbf{Función} \\
         \midrule
-        \texttt{f AMORT} & Muestra interés de los próximos períodos \\
-        \texttt{x$\leftrightarrow$y} & Alterna: muestra capital amortizado \\
-        \texttt{RCL PV} & Muestra saldo insoluto actual \\
+        \texttt{\#P} & Número de pagos a amortizar \\
+        \texttt{INT} & Muestra interés acumulado \\
+        \texttt{PRIN} & Muestra capital amortizado \\
+        \texttt{BAL} & Muestra saldo insoluto \\
+        \texttt{NEXT} & Avanza al siguiente grupo de pagos \\
         \bottomrule
     \end{tabular}
     \end{center}
@@ -595,15 +601,15 @@
 
     \textbf{Procedimiento:}
     \begin{enumerate}
-        \item Ingresar datos del préstamo (PV, i, n, calcular PMT)
-        \item Ingresar número de períodos a amortizar
-        \item Presionar \texttt{f AMORT} para ver interés
-        \item Presionar \texttt{x$\leftrightarrow$y} para ver capital
-        \item \texttt{RCL PV} para ver nuevo saldo
+        \item Ingresar datos del préstamo en TVM (PV, I\%YR, N, calcular PMT)
+        \item Entrar a \texttt{OTHER} $\to$ \texttt{AMRT}
+        \item Ingresar número de pagos con \texttt{\#P}
+        \item Presionar \texttt{INT}, \texttt{PRIN}, \texttt{BAL} según se necesite
+        \item Usar \texttt{NEXT} para avanzar al siguiente bloque
     \end{enumerate}
 \end{frame}
 
-\begin{frame}{HP 12C: Ejemplo de Amortización}
+\begin{frame}{HP 17bII+: Ejemplo de Amortización}
     \begin{block}{Problema}
         Préstamo de \$50,000, 12 meses, 1.5\% mensual. ¿Cuánto interés y capital se paga en los primeros 3 meses?
     \end{block}
@@ -617,21 +623,24 @@
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar \\
+        \texttt{FIN} $\to$ \texttt{TVM} & & Entrar al menú TVM \\
+        \texttt{CLEAR DATA} & 0.00 & Limpiar \\
         \texttt{50000 PV} & 50,000 & Préstamo \\
-        \texttt{12 n} & 12 & Meses \\
-        \texttt{1.5 i} & 1.5 & Tasa mensual \\
+        \texttt{12 N} & 12 & Meses \\
+        \texttt{1.5 I\%YR} & 1.5 & Tasa mensual \\
         \texttt{0 FV} & 0 & Sin valor residual \\
         \texttt{PMT} & -4,607.08 & Pago mensual \\
-        \texttt{3 f AMORT} & -2,111.14 & Interés meses 1-3 \\
-        \texttt{x$\leftrightarrow$y} & -11,710.09 & Capital meses 1-3 \\
-        \texttt{RCL PV} & 38,289.91 & Saldo después de 3 pagos \\
+        \texttt{OTHER} $\to$ \texttt{AMRT} & & Entrar a amortización \\
+        \texttt{3 \#P} & 3 & Amortizar 3 pagos \\
+        \texttt{INT} & -2,111.14 & Interés meses 1-3 \\
+        \texttt{PRIN} & -11,710.09 & Capital meses 1-3 \\
+        \texttt{BAL} & 38,289.91 & Saldo después de 3 pagos \\
         \bottomrule
     \end{tabular}
     \end{center}
 \end{frame}
 
-\begin{frame}{HP 12C: Saldo en Cualquier Momento}
+\begin{frame}{HP 17bII+: Saldo en Cualquier Momento}
     \begin{block}{Problema}
         Mismo préstamo. ¿Cuál es el saldo después del pago 8?
     \end{block}
@@ -641,11 +650,12 @@
 
     \textbf{Método 1: Continuar amortizando}
 
-    (Después de los 3 primeros...)
+    (Después de los 3 primeros, presionar \texttt{NEXT}...)
     \begin{center}
     \begin{tabular}{@{}lll@{}}
-        \texttt{5 f AMORT} & -1,486.45 & Interés meses 4-8 \\
-        \texttt{RCL PV} & 16,755.27 & Saldo después de pago 8 \\
+        \texttt{5 \#P} & 5 & Amortizar pagos 4-8 \\
+        \texttt{INT} & -1,486.45 & Interés meses 4-8 \\
+        \texttt{BAL} & 16,755.27 & Saldo después de pago 8 \\
     \end{tabular}
     \end{center}
 
@@ -901,7 +911,7 @@ plt.legend(); plt.grid(True)
         \item \textbf{Alemán}: amortización constante, menos interés total
         \item \textbf{Americano}: solo interés + bullet, más interés total
         \item El \textbf{saldo insoluto} = VP de pagos restantes
-        \item HP 12C: \texttt{f AMORT} para desglose
+        \item HP 17bII+: \texttt{OTHER} $\to$ \texttt{AMRT} para desglose
     \end{enumerate}
 \end{frame}
 
@@ -915,7 +925,7 @@ plt.legend(); plt.grid(True)
 
         \vspace{0.3cm}
 
-        \item \textbf{HP 12C:} Usa \texttt{f AMORT} para verificar el interés de los primeros 3 meses del ejercicio anterior.
+        \item \textbf{HP 17bII+:} Usa \texttt{OTHER} $\to$ \texttt{AMRT} para verificar el interés de los primeros 3 meses del ejercicio anterior.
 
         \vspace{0.3cm}
 

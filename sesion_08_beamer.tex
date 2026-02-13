@@ -597,7 +597,7 @@
 \end{frame}
 
 % ===========================================
-% SECCIÓN 7: TRUCOS Y HP 12C
+% SECCIÓN 7: TRUCOS Y HP 17bII+
 % ===========================================
 \section{Trucos de Estimación Mental}
 
@@ -647,9 +647,9 @@
     \end{itemize}
 \end{frame}
 
-\section{Calculadora HP 12C}
+\section{Calculadora HP 17bII+}
 
-\begin{frame}{HP 12C: Precio del Bono}
+\begin{frame}{HP 17bII+: Precio del Bono}
     \begin{block}{Problema}
         Bono: \$1,000 par, 7\% cupón semestral, 8 años, rendimiento requerido 9\%. ¿Precio?
     \end{block}
@@ -657,16 +657,17 @@
     \pause
     \vspace{0.2cm}
 
+    \textbf{Ruta:} \texttt{FIN} $\to$ \texttt{TVM} (con \texttt{P/YR = 1})
     \begin{center}
     \scriptsize
     \begin{tabular}{@{}lll@{}}
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar \\
+        \texttt{CLEAR DATA} & 0.00 & Limpiar \\
         \texttt{1000 FV} & 1,000.00 & Valor nominal \\
-        \texttt{16 n} & 16.00 & 8 años $\times$ 2 = 16 semestres \\
-        \texttt{4.5 i} & 4.50 & 9\%/2 = 4.5\% semestral \\
+        \texttt{16 N} & 16.00 & 8 años $\times$ 2 = 16 semestres \\
+        \texttt{4.5 I\%YR} & 4.50 & 9\%/2 = 4.5\% semestral \\
         \texttt{35 PMT} & 35.00 & Cupón = 1000 $\times$ 7\%/2 \\
         \texttt{PV} & \textbf{-889.30} & Precio del bono \\
         \bottomrule
@@ -677,7 +678,7 @@
     \textbf{Precio = \$889.30} (descuento, porque YTM > cupón)
 \end{frame}
 
-\begin{frame}{HP 12C: Calcular YTM}
+\begin{frame}{HP 17bII+: Calcular YTM}
     \begin{block}{Problema}
         Mismo bono se vende a \$950. ¿Cuál es el YTM?
     \end{block}
@@ -691,12 +692,12 @@
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar \\
-        \texttt{950 CHS PV} & -950.00 & Precio (lo que pagas) \\
+        \texttt{CLEAR DATA} & 0.00 & Limpiar \\
+        \texttt{950 +/- PV} & -950.00 & Precio (lo que pagas) \\
         \texttt{1000 FV} & 1,000.00 & Valor nominal \\
-        \texttt{16 n} & 16.00 & 16 semestres \\
+        \texttt{16 N} & 16.00 & 16 semestres \\
         \texttt{35 PMT} & 35.00 & Cupón semestral \\
-        \texttt{i} & \textbf{3.97} & Tasa semestral \\
+        \texttt{I\%YR} & \textbf{3.97} & Tasa semestral \\
         \bottomrule
     \end{tabular}
     \end{center}
@@ -946,7 +947,7 @@ plt.legend(); plt.grid(True)
 
 \begin{frame}{Tarea para la Próxima Sesión}
     \begin{enumerate}
-        \item \textbf{HP 12C:} Calcular precio y YTM de un bono con cupón 6\% semestral, 5 años, valor par \$1,000, rendimiento 8\%.
+        \item \textbf{HP 17bII+:} Calcular precio y YTM de un bono con cupón 6\% semestral, 5 años, valor par \$1,000, rendimiento 8\%.
 
         \vspace{0.3cm}
 

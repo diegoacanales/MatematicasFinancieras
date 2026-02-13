@@ -122,7 +122,7 @@
         \item Derivar la fórmula del valor futuro de una anualidad
         \item Calcular el pago periódico dado VP, VF, tasa y períodos
         \item Aplicar anualidades a fondos de ahorro y préstamos
-        \item Usar la HP 12C y Python para cálculos de anualidades
+        \item Usar la HP 17bII+ y Python para cálculos de anualidades
     \end{enumerate}
 \end{frame}
 
@@ -664,23 +664,28 @@
 \end{frame}
 
 % ===========================================
-% SECCIÓN 6: HP 12C
+% SECCIÓN 6: HP 17bII+
 % ===========================================
-\section{Calculadora HP 12C}
+\section{Calculadora HP 17bII+}
 
-\begin{frame}{HP 12C: Teclas para Anualidades}
+\begin{frame}{HP 17bII+: Teclas para Anualidades}
+    \textbf{Ruta:} \texttt{FIN} $\to$ \texttt{TVM}
+
+    \vspace{0.3cm}
+
     \begin{center}
     \begin{tabular}{@{}cl@{}}
         \toprule
-        \textbf{Tecla} & \textbf{Función} \\
+        \textbf{Tecla (soft key)} & \textbf{Función} \\
         \midrule
-        \texttt{n} & Número de períodos (pagos) \\
-        \texttt{i} & Tasa de interés por período (\%) \\
+        \texttt{N} & Número de períodos (pagos) \\
+        \texttt{I\%YR} & Tasa de interés anual nominal (\%) \\
         \texttt{PV} & Valor presente \\
         \texttt{PMT} & Pago periódico \\
         \texttt{FV} & Valor futuro \\
-        \texttt{g END} & Modo anualidad ordinaria (default) \\
-        \texttt{g BEG} & Modo anualidad anticipada \\
+        \texttt{OTHER} $\to$ \texttt{END} & Modo anualidad ordinaria (default) \\
+        \texttt{OTHER} $\to$ \texttt{BEG} & Modo anualidad anticipada \\
+        \texttt{OTHER} $\to$ \texttt{P/YR} & Pagos por año \\
         \bottomrule
     \end{tabular}
     \end{center}
@@ -690,14 +695,14 @@
 
     \begin{alertblock}{Convención de Signos}
         \begin{itemize}
-            \item Flujos que \textbf{salen} de ti: negativos
+            \item Flujos que \textbf{salen} de ti: negativos (usar \texttt{+/-})
             \item Flujos que \textbf{entran} a ti: positivos
             \item PV y FV deben tener signos opuestos a PMT (o uno de ellos ser 0)
         \end{itemize}
     \end{alertblock}
 \end{frame}
 
-\begin{frame}{HP 12C: Ejemplo 1 - Calcular Pago de Préstamo}
+\begin{frame}{HP 17bII+: Ejemplo 1 - Calcular Pago de Préstamo}
     \begin{block}{Problema}
         Préstamo de \$500,000, 48 meses, 1\% mensual. ¿Cuál es el pago mensual?
     \end{block}
@@ -710,11 +715,13 @@
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar \\
-        \texttt{g END} & & Modo ordinario \\
+        \texttt{FIN} $\to$ \texttt{TVM} & & Entrar al menú TVM \\
+        \texttt{CLEAR DATA} & 0.00 & Limpiar \\
+        \texttt{OTHER} $\to$ \texttt{END} & & Modo ordinario \\
+        \texttt{1 P/YR} & 1.00 & 1 pago por año \\
         \texttt{500000 PV} & 500,000.00 & Préstamo recibido (+) \\
-        \texttt{48 n} & 48.00 & 48 meses \\
-        \texttt{1 i} & 1.00 & 1\% mensual \\
+        \texttt{48 N} & 48.00 & 48 meses \\
+        \texttt{1 I\%YR} & 1.00 & 1\% mensual \\
         \texttt{0 FV} & 0.00 & Sin valor residual \\
         \texttt{PMT} & \textbf{-13,166.75} & Pago mensual \\
         \bottomrule
@@ -725,7 +732,7 @@
     \textbf{Respuesta:} \$13,166.75 mensuales (negativo porque sale de ti).
 \end{frame}
 
-\begin{frame}{HP 12C: Ejemplo 2 - Calcular VP de Anualidad}
+\begin{frame}{HP 17bII+: Ejemplo 2 - Calcular VP de Anualidad}
     \begin{block}{Problema}
         Una inversión paga \$10,000 anuales por 15 años. Si la tasa es 8\%, ¿cuánto vale hoy?
     \end{block}
@@ -738,11 +745,11 @@
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar \\
-        \texttt{g END} & & Modo ordinario \\
+        \texttt{CLEAR DATA} & 0.00 & Limpiar \\
+        \texttt{OTHER} $\to$ \texttt{END} & & Modo ordinario \\
         \texttt{10000 PMT} & 10,000.00 & Pago que recibes (+) \\
-        \texttt{15 n} & 15.00 & 15 años \\
-        \texttt{8 i} & 8.00 & 8\% anual \\
+        \texttt{15 N} & 15.00 & 15 años \\
+        \texttt{8 I\%YR} & 8.00 & 8\% anual \\
         \texttt{0 FV} & 0.00 & Sin valor final \\
         \texttt{PV} & \textbf{-85,594.79} & Valor presente \\
         \bottomrule
@@ -753,7 +760,7 @@
     \textbf{Respuesta:} \$85,594.79 (negativo indica cuánto pagarías hoy).
 \end{frame}
 
-\begin{frame}{HP 12C: Ejemplo 3 - Fondo de Ahorro}
+\begin{frame}{HP 17bII+: Ejemplo 3 - Fondo de Ahorro}
     \begin{block}{Problema}
         Quieres ahorrar \$1,000,000 en 20 años. Si el fondo paga 6\% anual, ¿cuánto debes depositar cada año?
     \end{block}
@@ -766,11 +773,11 @@
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar \\
-        \texttt{g END} & & Modo ordinario \\
+        \texttt{CLEAR DATA} & 0.00 & Limpiar \\
+        \texttt{OTHER} $\to$ \texttt{END} & & Modo ordinario \\
         \texttt{1000000 FV} & 1,000,000.00 & Meta de ahorro (+) \\
-        \texttt{20 n} & 20.00 & 20 años \\
-        \texttt{6 i} & 6.00 & 6\% anual \\
+        \texttt{20 N} & 20.00 & 20 años \\
+        \texttt{6 I\%YR} & 6.00 & 6\% anual \\
         \texttt{0 PV} & 0.00 & Sin inversión inicial \\
         \texttt{PMT} & \textbf{-27,184.56} & Depósito anual \\
         \bottomrule
@@ -1028,13 +1035,13 @@ plt.grid(True)
         \item El \textbf{FVIFA} calcula el valor acumulado de depósitos periódicos
         \item Las fórmulas vienen de sumar \textbf{series geométricas}
         \item Aplicaciones: préstamos, fondos de ahorro, pensiones
-        \item La HP 12C tiene funciones integradas para estos cálculos
+        \item La HP 17bII+ tiene funciones integradas para estos cálculos
     \end{enumerate}
 \end{frame}
 
 \begin{frame}{Tarea para la Próxima Sesión}
     \begin{enumerate}
-        \item \textbf{Ejercicios HP 12C:}
+        \item \textbf{Ejercicios HP 17bII+:}
         \begin{itemize}
             \item Pago mensual de \$300,000 a 60 meses, 1.2\% mensual
             \item VP de 25 pagos anuales de \$15,000 al 9\%

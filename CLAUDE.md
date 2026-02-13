@@ -165,7 +165,7 @@ Cada presentación DEBE incluir estas **8 secciones** en este orden:
 - Aproximaciones útiles
 - Tabla de factores comunes para memorizar
 
-### 6. Calculadora HP 12C (~3-4 slides)
+### 6. Calculadora HP 17bII+ (~3-4 slides)
 - Recordatorio de teclas relevantes
 - 2-3 ejemplos paso a paso en formato tabla:
 ```latex
@@ -177,7 +177,7 @@ Cada presentación DEBE incluir estas **8 secciones** en este orden:
     \bottomrule
 \end{tabular}
 ```
-- Siempre recordar convención de signos (CHS)
+- Siempre recordar convención de signos (`+/-`)
 
 ### 7. Ejercicios Prácticos (~5-6 slides)
 - **3-5 ejercicios** con soluciones completas
@@ -199,7 +199,7 @@ Cada presentación DEBE incluir estas **8 secciones** en este orden:
 - Resumen de fórmulas clave en dos columnas
 - Lista de trucos/herramientas
 - Tarea: 3-4 items incluyendo:
-  - Ejercicios con HP 12C
+  - Ejercicios con HP 17bII+
   - Problema adicional desafiante
   - Código Python para ejecutar
   - Pregunta de reflexión
@@ -303,7 +303,7 @@ Antes de entregar cada sesión, verificar:
 - [ ] Todas las 8 secciones presentes
 - [ ] Mínimo 3 ejercicios a mano con soluciones
 - [ ] Mínimo 1 ejercicio Python funcional
-- [ ] Mínimo 2 ejemplos de HP 12C
+- [ ] Mínimo 2 ejemplos de HP 17bII+
 - [ ] Mínimo 1 gráfico TikZ/pgfplots
 - [ ] Fórmulas principales en `\boxed{}`
 - [ ] Conexión con sesión anterior (si aplica)

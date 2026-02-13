@@ -95,7 +95,7 @@
         \item Calcular interés simple y valor futuro con interés simple
         \item Derivar y aplicar la fórmula de interés compuesto
         \item Comparar el crecimiento lineal vs. exponencial del dinero
-        \item Utilizar la HP 12C y Python para cálculos financieros
+        \item Utilizar la HP 17bII+ y Python para cálculos financieros
     \end{enumerate}
 \end{frame}
 
@@ -584,24 +584,28 @@
 \end{frame}
 
 % ===========================================
-% SECCIÓN 6: CALCULADORA HP 12C
+% SECCIÓN 6: CALCULADORA HP 17bII+
 % ===========================================
-\section{Calculadora HP 12C}
+\section{Calculadora HP 17bII+}
 
-\begin{frame}{HP 12C: Teclas Financieras Básicas}
+\begin{frame}{HP 17bII+: Navegación y Teclas Financieras}
+    \textbf{Ruta:} \texttt{FIN} $\to$ \texttt{TVM} (menú principal financiero)
+
+    \vspace{0.3cm}
+
     \begin{center}
         \begin{tabular}{@{}cl@{}}
             \toprule
-            \textbf{Tecla} & \textbf{Función} \\
+            \textbf{Tecla (soft key)} & \textbf{Función} \\
             \midrule
-            \texttt{n} & Número de períodos \\
-            \texttt{i} & Tasa de interés por período (\%) \\
+            \texttt{N} & Número de períodos \\
+            \texttt{I\%YR} & Tasa de interés \textbf{anual} nominal (\%) \\
             \texttt{PV} & Valor presente (Principal) \\
             \texttt{FV} & Valor futuro \\
             \texttt{PMT} & Pago periódico (no usado hoy) \\
-            \texttt{CHS} & Cambiar signo (+/-) \\
-            \texttt{CLx} & Borrar display \\
-            \texttt{f} \texttt{CLX} & Borrar registros financieros \\
+            \texttt{P/YR} & Pagos por año (en \texttt{OTHER}) \\
+            \texttt{+/-} & Cambiar signo \\
+            \texttt{CLEAR DATA} & Borrar registros financieros \\
             \bottomrule
         \end{tabular}
     \end{center}
@@ -611,13 +615,14 @@
 
     \begin{alertblock}{Convención de Signos}
         \begin{itemize}
-            \item Dinero que \textbf{sale} (inversión): \textbf{negativo} (usar CHS)
+            \item Dinero que \textbf{sale} (inversión): \textbf{negativo} (usar \texttt{+/-})
             \item Dinero que \textbf{entra} (retorno): \textbf{positivo}
+            \item \textbf{Importante:} Verificar que \texttt{P/YR = 1} para cálculos anuales
         \end{itemize}
     \end{alertblock}
 \end{frame}
 
-\begin{frame}{HP 12C: Ejemplo 1 - Calcular Valor Futuro}
+\begin{frame}{HP 17bII+: Ejemplo 1 - Calcular Valor Futuro}
     \begin{block}{Problema}
         Inviertes \$1,000 al 8\% anual compuesto por 5 años. ¿Cuál es el valor futuro?
     \end{block}
@@ -630,10 +635,11 @@
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar registros \\
-        \texttt{1000 CHS PV} & -1,000.00 & Ingresa PV (negativo: sale) \\
-        \texttt{8 i} & 8.00 & Tasa de interés 8\% \\
-        \texttt{5 n} & 5.00 & 5 períodos \\
+        \texttt{FIN} $\to$ \texttt{TVM} & & Entrar al menú TVM \\
+        \texttt{CLEAR DATA} & 0.00 & Limpiar registros \\
+        \texttt{1000 +/- PV} & -1,000.00 & Ingresa PV (negativo: sale) \\
+        \texttt{8 I\%YR} & 8.00 & Tasa de interés 8\% anual \\
+        \texttt{5 N} & 5.00 & 5 períodos \\
         \texttt{FV} & \textbf{1,469.33} & Calcula valor futuro \\
         \bottomrule
     \end{tabular}
@@ -645,7 +651,7 @@
     \textbf{Verificación manual:} $F = 1000(1.08)^5 = 1000 \times 1.4693 = \$1,469.33$ \checkmark
 \end{frame}
 
-\begin{frame}{HP 12C: Ejemplo 2 - Calcular Tasa de Interés}
+\begin{frame}{HP 17bII+: Ejemplo 2 - Calcular Tasa de Interés}
     \begin{block}{Problema}
         Una inversión de \$5,000 creció a \$8,000 en 6 años. ¿Cuál fue la tasa anual?
     \end{block}
@@ -658,11 +664,11 @@
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar registros \\
-        \texttt{5000 CHS PV} & -5,000.00 & Valor presente (sale) \\
+        \texttt{CLEAR DATA} & 0.00 & Limpiar registros \\
+        \texttt{5000 +/- PV} & -5,000.00 & Valor presente (sale) \\
         \texttt{8000 FV} & 8,000.00 & Valor futuro (entra) \\
-        \texttt{6 n} & 6.00 & 6 períodos \\
-        \texttt{i} & \textbf{8.15} & Calcula tasa de interés \\
+        \texttt{6 N} & 6.00 & 6 períodos \\
+        \texttt{I\%YR} & \textbf{8.15} & Calcula tasa de interés \\
         \bottomrule
     \end{tabular}
     \end{center}
@@ -673,7 +679,7 @@
     \textbf{Verificación:} $r = (8000/5000)^{1/6} - 1 = (1.6)^{0.1667} - 1 = 0.0815 = 8.15\%$ \checkmark
 \end{frame}
 
-\begin{frame}{HP 12C: Ejemplo 3 - Calcular Número de Períodos}
+\begin{frame}{HP 17bII+: Ejemplo 3 - Calcular Número de Períodos}
     \begin{block}{Problema}
         ¿Cuántos años tardará \$2,000 en convertirse en \$5,000 al 7\% anual?
     \end{block}
@@ -686,11 +692,11 @@
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar registros \\
-        \texttt{2000 CHS PV} & -2,000.00 & Valor presente \\
+        \texttt{CLEAR DATA} & 0.00 & Limpiar registros \\
+        \texttt{2000 +/- PV} & -2,000.00 & Valor presente \\
         \texttt{5000 FV} & 5,000.00 & Valor futuro \\
-        \texttt{7 i} & 7.00 & Tasa 7\% \\
-        \texttt{n} & \textbf{13.54} & Calcula períodos \\
+        \texttt{7 I\%YR} & 7.00 & Tasa 7\% anual \\
+        \texttt{N} & \textbf{13.54} & Calcula períodos \\
         \bottomrule
     \end{tabular}
     \end{center}
@@ -849,7 +855,7 @@ pip install numpy-financial
     \pause
     \vspace{0.3cm}
 
-    \begin{alertblock}{Convención de Signos (igual que HP 12C)}
+    \begin{alertblock}{Convención de Signos (igual que HP 17bII+)}
         \begin{itemize}
             \item Dinero que sale: \textbf{negativo}
             \item Dinero que entra: \textbf{positivo}
@@ -968,7 +974,7 @@ for n in [0, 5, 10, 20, 30]:
 
 \begin{frame}{Tarea para la Próxima Sesión}
     \begin{enumerate}
-        \item \textbf{Ejercicios HP 12C:}
+        \item \textbf{Ejercicios HP 17bII+:}
         \begin{itemize}
             \item Calcular $F$ si $P = \$20,000$, $r = 9\%$, $n = 7$ años
             \item Calcular $n$ si $P = \$5,000$, $F = \$12,000$, $r = 11\%$

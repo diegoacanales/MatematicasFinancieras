@@ -115,7 +115,7 @@
         \item Entender y aplicar el concepto de perpetuidad
         \item Calcular el valor de perpetuidades simples y crecientes
         \item Aplicar estos conceptos a valuación de pensiones, rentas y dividendos
-        \item Usar la HP 12C en modo BEG para anualidades anticipadas
+        \item Usar la HP 17bII+ en modo BEG para anualidades anticipadas
     \end{enumerate}
 \end{frame}
 
@@ -639,18 +639,22 @@
 \end{frame}
 
 % ===========================================
-% SECCIÓN 7: HP 12C
+% SECCIÓN 7: HP 17bII+
 % ===========================================
-\section{Calculadora HP 12C}
+\section{Calculadora HP 17bII+}
 
-\begin{frame}{HP 12C: Modo BEGIN para Anticipadas}
+\begin{frame}{HP 17bII+: Modo BEGIN para Anticipadas}
+    \textbf{Ruta:} \texttt{FIN} $\to$ \texttt{TVM} $\to$ \texttt{OTHER}
+
+    \vspace{0.3cm}
+
     \begin{center}
     \begin{tabular}{@{}cl@{}}
         \toprule
         \textbf{Teclas} & \textbf{Función} \\
         \midrule
-        \texttt{g END} & Modo anualidad ordinaria (pagos al final) \\
-        \texttt{g BEG} & Modo anualidad anticipada (pagos al inicio) \\
+        \texttt{OTHER} $\to$ \texttt{END} & Modo anualidad ordinaria (pagos al final) \\
+        \texttt{OTHER} $\to$ \texttt{BEG} & Modo anualidad anticipada (pagos al inicio) \\
         \bottomrule
     \end{tabular}
     \end{center}
@@ -672,7 +676,7 @@
     \end{exampleblock}
 \end{frame}
 
-\begin{frame}{HP 12C: Ejemplo - Renta Anticipada}
+\begin{frame}{HP 17bII+: Ejemplo - Renta Anticipada}
     \begin{block}{Problema}
         Renta mensual de \$12,000, contrato de 24 meses, 0.8\% mensual. ¿Cuál es el VP si se paga al inicio de cada mes?
     \end{block}
@@ -685,11 +689,12 @@
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar \\
-        \texttt{g BEG} & BEGIN & Modo anticipada \\
+        \texttt{FIN} $\to$ \texttt{TVM} & & Entrar al menú TVM \\
+        \texttt{CLEAR DATA} & 0.00 & Limpiar \\
+        \texttt{OTHER} $\to$ \texttt{BEG} & BEGIN & Modo anticipada \\
         \texttt{12000 PMT} & 12,000.00 & Pago mensual \\
-        \texttt{24 n} & 24.00 & 24 meses \\
-        \texttt{0.8 i} & 0.80 & 0.8\% mensual \\
+        \texttt{24 N} & 24.00 & 24 meses \\
+        \texttt{0.8 I\%YR} & 0.80 & 0.8\% mensual \\
         \texttt{0 FV} & 0.00 & Sin valor final \\
         \texttt{PV} & \textbf{-264,982.78} & VP anticipada \\
         \bottomrule
@@ -700,7 +705,7 @@
     \textbf{Comparación:} En modo END sería \$262,887.72 (1.8\% menos).
 \end{frame}
 
-\begin{frame}{HP 12C: Ejemplo - Fondo de Retiro Anticipado}
+\begin{frame}{HP 17bII+: Ejemplo - Fondo de Retiro Anticipado}
     \begin{block}{Problema}
         Depositas \$5,000 mensuales al inicio de cada mes por 20 años al 0.6\% mensual. ¿Cuánto acumulas?
     \end{block}
@@ -713,11 +718,11 @@
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar \\
-        \texttt{g BEG} & BEGIN & Modo anticipada \\
-        \texttt{5000 CHS PMT} & -5,000.00 & Depósito mensual \\
-        \texttt{240 n} & 240.00 & 240 meses \\
-        \texttt{0.6 i} & 0.60 & 0.6\% mensual \\
+        \texttt{CLEAR DATA} & 0.00 & Limpiar \\
+        \texttt{OTHER} $\to$ \texttt{BEG} & BEGIN & Modo anticipada \\
+        \texttt{5000 +/- PMT} & -5,000.00 & Depósito mensual \\
+        \texttt{240 N} & 240.00 & 240 meses \\
+        \texttt{0.6 I\%YR} & 0.60 & 0.6\% mensual \\
         \texttt{0 PV} & 0.00 & Sin inversión inicial \\
         \texttt{FV} & \textbf{2,357,892.50} & Valor futuro \\
         \bottomrule
@@ -728,8 +733,8 @@
     Depositaste: $5,000 \times 240 = \$1,200,000$. Ganaste \$1,157,892 en intereses.
 \end{frame}
 
-\begin{frame}{HP 12C: Perpetuidades (Cálculo Manual)}
-    La HP 12C no tiene función de perpetuidad, pero es fácil calcular:
+\begin{frame}{HP 17bII+: Perpetuidades (Cálculo Manual)}
+    La HP 17bII+ no tiene función de perpetuidad, pero es fácil calcular:
 
     \pause
     \vspace{0.3cm}
@@ -739,8 +744,7 @@
         \begin{tabular}{@{}lll@{}}
             \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
             \midrule
-            \texttt{50000 ENTER} & 50,000 & PMT \\
-            \texttt{0.08 $\div$} & \textbf{625,000} & PV = PMT/r \\
+            \texttt{50000 $\div$ 0.08 =} & \textbf{625,000} & PV = PMT/r \\
         \end{tabular}
         \end{center}
     \end{block}
@@ -753,9 +757,7 @@
         \begin{tabular}{@{}lll@{}}
             \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
             \midrule
-            \texttt{50000 ENTER} & 50,000 & PMT \\
-            \texttt{0.08 ENTER 0.03 -} & 0.05 & $r - g$ \\
-            \texttt{$\div$} & \textbf{1,000,000} & PV \\
+            \texttt{50000 $\div$ (0.08 $-$ 0.03) =} & \textbf{1,000,000} & PV = PMT/(r-g) \\
         \end{tabular}
         \end{center}
     \end{block}
@@ -1015,14 +1017,14 @@ plt.grid(True)
         \item \textbf{Perpetuidad creciente}: considera crecimiento, $PV = PMT/(r-g)$
         \item El \textbf{Modelo de Gordon} es una perpetuidad creciente
         \item La perpetuidad es el límite de la anualidad cuando $n \to \infty$
-        \item HP 12C: usar \texttt{g BEG} para anticipadas
+        \item HP 17bII+: usar \texttt{OTHER} $\to$ \texttt{BEG} para anticipadas
         \item El valor es muy sensible a $g$ cuando $g$ se acerca a $r$
     \end{enumerate}
 \end{frame}
 
 \begin{frame}{Tarea para la Próxima Sesión}
     \begin{enumerate}
-        \item \textbf{Ejercicios HP 12C:}
+        \item \textbf{Ejercicios HP 17bII+:}
         \begin{itemize}
             \item VP de renta de \$18,000 mensual anticipada, 36 meses, 1\%
             \item VF de depósitos de \$2,000 al inicio del mes, 60 meses, 0.7\%

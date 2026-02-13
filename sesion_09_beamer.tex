@@ -329,7 +329,7 @@
         La TIR se calcula por:
         \begin{itemize}
             \item Prueba y error / interpolación
-            \item Calculadora financiera (HP 12C)
+            \item Calculadora financiera (HP 17bII+)
             \item Métodos numéricos (Newton-Raphson)
             \item Software (Excel, Python)
         \end{itemize}
@@ -644,7 +644,7 @@
 \end{frame}
 
 % ===========================================
-% SECCIÓN 7: TRUCOS Y HP 12C
+% SECCIÓN 7: TRUCOS Y HP 17bII+
 % ===========================================
 \section{Trucos de Estimación Mental}
 
@@ -695,9 +695,9 @@
     (Esto es solo una estimación gruesa)
 \end{frame}
 
-\section{Calculadora HP 12C}
+\section{Calculadora HP 17bII+}
 
-\begin{frame}{HP 12C: Cálculo de VPN}
+\begin{frame}{HP 17bII+: Cálculo de VPN}
     \begin{block}{Problema}
         Inversión: \$50,000. Flujos: Año 1: \$15,000, Año 2: \$20,000, Año 3: \$25,000. Tasa: 12\%.
     \end{block}
@@ -705,19 +705,24 @@
     \pause
     \vspace{0.2cm}
 
+    \textbf{Ruta:} \texttt{FIN} $\to$ \texttt{CFLO}
     \begin{center}
     \scriptsize
     \begin{tabular}{@{}lll@{}}
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar \\
-        \texttt{50000 CHS g CF$_0$} & -50,000 & Inversión inicial \\
-        \texttt{15000 g CF$_j$} & 15,000 & Flujo año 1 \\
-        \texttt{20000 g CF$_j$} & 20,000 & Flujo año 2 \\
-        \texttt{25000 g CF$_j$} & 25,000 & Flujo año 3 \\
-        \texttt{12 i} & 12 & Tasa de descuento \\
-        \texttt{f NPV} & \textbf{1,103.19} & VPN \\
+        \texttt{FIN} $\to$ \texttt{CFLO} & FLOW(0)=? & Entrar al menú de flujos \\
+        \texttt{50000 +/- INPUT} & FLOW(0)=-50,000 & Inversión inicial \\
+        \texttt{15000 INPUT} & FLOW(1)=15,000 & Flujo año 1 \\
+        \texttt{INPUT} & \#TIMES(1)=1 & Se repite 1 vez \\
+        \texttt{20000 INPUT} & FLOW(2)=20,000 & Flujo año 2 \\
+        \texttt{INPUT} & \#TIMES(2)=1 & Se repite 1 vez \\
+        \texttt{25000 INPUT} & FLOW(3)=25,000 & Flujo año 3 \\
+        \texttt{INPUT} & \#TIMES(3)=1 & Se repite 1 vez \\
+        \texttt{CALC} & & Ir a cálculos \\
+        \texttt{12 I\%} & 12 & Tasa de descuento \\
+        \texttt{NPV} & \textbf{1,103.19} & VPN \\
         \bottomrule
     \end{tabular}
     \end{center}
@@ -726,8 +731,8 @@
     VPN = \$1,103.19 > 0, aceptar el proyecto.
 \end{frame}
 
-\begin{frame}{HP 12C: Cálculo de TIR}
-    \textbf{Continuando del ejemplo anterior...}
+\begin{frame}{HP 17bII+: Cálculo de TIR}
+    \textbf{Continuando del ejemplo anterior} (dentro de \texttt{CALC})...
 
     \pause
     \vspace{0.3cm}
@@ -737,7 +742,7 @@
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f IRR} & \textbf{13.67} & TIR del proyecto \\
+        \texttt{IRR\%} & \textbf{13.67} & TIR del proyecto \\
         \bottomrule
     \end{tabular}
     \end{center}
@@ -757,7 +762,7 @@
     \end{exampleblock}
 \end{frame}
 
-\begin{frame}{HP 12C: Flujos con Repetición}
+\begin{frame}{HP 17bII+: Flujos con Repetición}
     \begin{block}{Problema}
         Inversión: \$100,000. Flujos: \$30,000 por 5 años. Tasa: 10\%.
     \end{block}
@@ -765,24 +770,25 @@
     \pause
     \vspace{0.2cm}
 
+    \textbf{Ruta:} \texttt{FIN} $\to$ \texttt{CFLO}
     \begin{center}
     \scriptsize
     \begin{tabular}{@{}lll@{}}
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar \\
-        \texttt{100000 CHS g CF$_0$} & -100,000 & Inversión \\
-        \texttt{30000 g CF$_j$} & 30,000 & Flujo periódico \\
-        \texttt{5 g N$_j$} & 5 & Se repite 5 veces \\
-        \texttt{10 i} & 10 & Tasa \\
-        \texttt{f NPV} & \textbf{13,723.60} & VPN \\
-        \texttt{f IRR} & \textbf{15.24} & TIR \\
+        \texttt{100000 +/- INPUT} & FLOW(0)=-100,000 & Inversión \\
+        \texttt{30000 INPUT} & FLOW(1)=30,000 & Flujo periódico \\
+        \texttt{5 INPUT} & \#TIMES(1)=5 & Se repite 5 veces \\
+        \texttt{CALC} & & Ir a cálculos \\
+        \texttt{10 I\%} & 10 & Tasa \\
+        \texttt{NPV} & \textbf{13,723.60} & VPN \\
+        \texttt{IRR\%} & \textbf{15.24} & TIR \\
         \bottomrule
     \end{tabular}
     \end{center}
 
-    La tecla \texttt{g N$_j$} indica cuántas veces se repite el último flujo.
+    \texttt{\#TIMES} indica cuántas veces se repite el flujo (default = 1).
 \end{frame}
 
 % ===========================================
@@ -997,7 +1003,7 @@ print(f"\nTasa de cruce: {cruce*100:.2f}%")
         \item VPN y TIR pueden \textbf{conflictar} en proyectos excluyentes
         \item En caso de conflicto, \textbf{usar VPN}
         \item TIR puede ser \textbf{múltiple} o no existir
-        \item HP 12C: \texttt{g CF$_j$}, \texttt{f NPV}, \texttt{f IRR}
+        \item HP 17bII+: \texttt{FIN} $\to$ \texttt{CFLO} para flujos, \texttt{CALC} $\to$ \texttt{NPV}/\texttt{IRR\%}
     \end{enumerate}
 \end{frame}
 
@@ -1011,7 +1017,7 @@ print(f"\nTasa de cruce: {cruce*100:.2f}%")
 
         \vspace{0.3cm}
 
-        \item \textbf{HP 12C:} Practica ingresando flujos irregulares y calculando VPN/TIR.
+        \item \textbf{HP 17bII+:} Practica ingresando flujos irregulares en \texttt{FIN} $\to$ \texttt{CFLO} y calculando VPN/TIR.
 
         \vspace{0.3cm}
 

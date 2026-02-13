@@ -684,25 +684,27 @@
 \end{frame}
 
 % ===========================================
-% SECCIÓN 6: HP 12C
+% SECCIÓN 6: HP 17bII+
 % ===========================================
-\section{Calculadora HP 12C}
+\section{Calculadora HP 17bII+}
 
-\begin{frame}{HP 12C: Conversión de Tasas}
-    La HP 12C puede convertir entre tasas nominal y efectiva.
+\begin{frame}{HP 17bII+: Menú de Conversión de Tasas (ICNV)}
+    La HP 17bII+ tiene una función \textbf{dedicada} para conversión de tasas.
+
+    \vspace{0.3cm}
+
+    \textbf{Ruta:} \texttt{FIN} $\to$ \texttt{ICNV} (Interest CoNVersion)
 
     \vspace{0.3cm}
 
     \begin{center}
     \begin{tabular}{@{}cl@{}}
         \toprule
-        \textbf{Teclas} & \textbf{Función} \\
+        \textbf{Tecla (soft key)} & \textbf{Función} \\
         \midrule
-        \texttt{n} & Períodos de capitalización por año ($m$) \\
-        \texttt{i} & Tasa nominal anual / períodos \\
-        \texttt{PV} & -1 (valor inicial) \\
-        \texttt{PMT} & 0 (sin pagos) \\
-        \texttt{FV} & Calcula el factor $(1+r/m)^m$ \\
+        \texttt{NOM\%} & Tasa nominal anual \\
+        \texttt{EFF\%} & Tasa efectiva anual \\
+        \texttt{P} & Períodos de capitalización por año ($m$) \\
         \bottomrule
     \end{tabular}
     \end{center}
@@ -710,10 +712,14 @@
     \pause
     \vspace{0.3cm}
 
-    \textbf{Tasa efectiva = FV - 1} (expresada como decimal).
+    \begin{alertblock}{Procedimiento}
+        Ingresa \textbf{dos} valores cualesquiera y la calculadora resuelve el tercero.
+
+        Ejemplo: ingresa \texttt{NOM\%} y \texttt{P}, presiona \texttt{EFF\%} para obtener la tasa efectiva.
+    \end{alertblock}
 \end{frame}
 
-\begin{frame}{HP 12C: Ejemplo - Nominal a Efectiva}
+\begin{frame}{HP 17bII+: Ejemplo - Nominal a Efectiva}
     \begin{block}{Problema}
         Convertir 12\% nominal mensual a tasa efectiva anual.
     \end{block}
@@ -726,12 +732,10 @@
         \toprule
         \textbf{Teclas} & \textbf{Display} & \textbf{Descripción} \\
         \midrule
-        \texttt{f CLX} & 0.00 & Limpiar \\
-        \texttt{12 n} & 12.00 & 12 períodos (mensual) \\
-        \texttt{12 ENTER 12 $\div$ i} & 1.00 & Tasa por período (1\%) \\
-        \texttt{1 CHS PV} & -1.00 & Valor inicial \\
-        \texttt{0 PMT} & 0.00 & Sin pagos \\
-        \texttt{FV} & \textbf{1.1268} & Factor de capitalización \\
+        \texttt{FIN} $\to$ \texttt{ICNV} & & Entrar al menú ICNV \\
+        \texttt{12 NOM\%} & 12.00 & Tasa nominal 12\% \\
+        \texttt{12 P} & 12.00 & 12 períodos (mensual) \\
+        \texttt{EFF\%} & \textbf{12.68} & Tasa efectiva anual \\
         \bottomrule
     \end{tabular}
     \end{center}
@@ -739,10 +743,13 @@
     \pause
     \vspace{0.3cm}
 
-    \textbf{Tasa efectiva:} $1.1268 - 1 = 0.1268 = 12.68\%$
+    \textbf{Tasa efectiva = 12.68\%}
+
+    \vspace{0.2cm}
+    Verificación: $(1 + 0.12/12)^{12} - 1 = (1.01)^{12} - 1 = 12.68\%$ \checkmark
 \end{frame}
 
-\begin{frame}{HP 12C: Ejemplo - Comparar Ofertas}
+\begin{frame}{HP 17bII+: Ejemplo - Comparar Ofertas}
     \begin{block}{Problema}
         Banco A: 11.5\% nominal trimestral. Banco B: 11.3\% nominal mensual. ¿Cuál es mejor?
     \end{block}
@@ -750,24 +757,22 @@
     \pause
     \vspace{0.2cm}
 
-    \textbf{Banco A (trimestral, $m = 4$):}
+    \textbf{Banco A} (\texttt{FIN} $\to$ \texttt{ICNV}):
     \begin{center}
-    \begin{tabular}{@{}ll@{}}
-        \texttt{4 n}, \texttt{11.5 ENTER 4 $\div$ i}, \texttt{1 CHS PV}, \texttt{0 PMT}, \texttt{FV} & $\to$ 1.1199
+    \begin{tabular}{@{}lll@{}}
+        \texttt{11.5 NOM\%}, \texttt{4 P}, \texttt{EFF\%} & $\to$ \textbf{11.99\%} & Tasa efectiva \\
     \end{tabular}
     \end{center}
-    $r_{ef,A} = 11.99\%$
 
     \pause
     \vspace{0.2cm}
 
-    \textbf{Banco B (mensual, $m = 12$):}
+    \textbf{Banco B} (misma ruta):
     \begin{center}
-    \begin{tabular}{@{}ll@{}}
-        \texttt{12 n}, \texttt{11.3 ENTER 12 $\div$ i}, \texttt{1 CHS PV}, \texttt{0 PMT}, \texttt{FV} & $\to$ 1.1191
+    \begin{tabular}{@{}lll@{}}
+        \texttt{11.3 NOM\%}, \texttt{12 P}, \texttt{EFF\%} & $\to$ \textbf{11.91\%} & Tasa efectiva \\
     \end{tabular}
     \end{center}
-    $r_{ef,B} = 11.91\%$
 
     \pause
     \vspace{0.3cm}
@@ -1026,7 +1031,7 @@ plt.savefig('convergencia_tasa.png')
 
 \begin{frame}{Tarea para la Próxima Sesión}
     \begin{enumerate}
-        \item \textbf{Ejercicios HP 12C:}
+        \item \textbf{Ejercicios HP 17bII+:}
         \begin{itemize}
             \item Convertir 18\% nominal mensual a tasa efectiva
             \item Encontrar tasa nominal trimestral equivalente a 10\% efectiva
