@@ -34,10 +34,13 @@ jobs:
           args: "-pdf -interaction=nonstopmode"
 
       - name: Deploy PDFs to public repo
+        env:
+          DEPLOY_TOKEN: ${{ secrets.PDF_DEPLOY_TOKEN }}
         run: |
-          git clone https://x-access-token:${{ secrets.PDF_DEPLOY_TOKEN }}@github.com/diegoacanales/MatematicasFinancieras-PDFs.git pdf-repo
+          git clone https://x-access-token:${DEPLOY_TOKEN}@github.com/diegoacanales/MatematicasFinancieras-PDFs.git pdf-repo
           cp *.pdf pdf-repo/
           cd pdf-repo
+          git remote set-url origin https://x-access-token:${DEPLOY_TOKEN}@github.com/diegoacanales/MatematicasFinancieras-PDFs.git
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           git add *.pdf
